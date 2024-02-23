@@ -1,0 +1,9 @@
+div.input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  input {
+    margin-top: 10px;
+    padding: 5px;
+  }
+}
