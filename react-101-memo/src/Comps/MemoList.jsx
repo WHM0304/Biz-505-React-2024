@@ -1,10 +1,9 @@
-const MemoList = () => {
-  return (
-    <ul>
-      <li>ㅎㅇ</li>
-      <li>ㅎㅇ</li>
-      <li>ㅂ2</li>
-    </ul>
-  );
+import MemoItem from "./MemoItem";
+
+const MemoList = ({ memoList }) => {
+  const viewList = memoList.map((memo) => {
+    return <MemoItem memo={memo} />;
+  });
+  return <ul>{viewList}</ul>;
 };
 export default MemoList;

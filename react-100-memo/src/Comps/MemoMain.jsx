@@ -2,50 +2,43 @@ import styles from "../css/MemoMain.module.css";
 import "../css/Memo.css";
 import MemoMainLeft from "./MemoMainLeft";
 import MemoMainRight from "./MemoMainRight";
-
-import moment from "moment";
+import uuid from "react-uuid";
 
 // MemoLeft , MemoRight 에서 import 할 컴포넌트를 Main 에서 import 하고
 // MemoLeft , MemoRight 의 children 으로 보내서 컴포넌트를 "합성"하기
 import MemoDate from "./MemoDate";
 import MemoList from "./MemoList";
-import MemoItem from "./MemoItem";
-
 import MemoInput from "./MemoInput";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const MemoMain = () => {
-  // 메모 1개를 처리할 state
-  const [memo, setMemo] = useState({
-    m_seq: 0,
-    m_id: "UUID",
-    m_author: "whm0304@naver",
-    m_date: moment().format("YYYY-MM-DD"),
-    m_time: moment().format("HH:mm:ss"),
-    m_subject: "",
-    m_memo: "",
-    m_image: "",
+  const [memoItem, setMemoItem] = useState("");
+  const [memoList, setMemoList] = useState(() => {
+    return localStorage.getItem("memoList") ? JSON.parse(localStorage.getItem("memoList")) : [];
   });
-  // 메모 리스트를 처리할 state
-  const [memoList, setMemoList] = useState([]);
+
+  const saveStorage = () => {
+    localStorage.setItem("memoList", JSON.stringify(memoList));
+  };
+  useEffect(saveStorage, [memoList]);
 
   const memoInsert = () => {
-    const newMemoList = [...memoList, { ...memo, m_date: moment().format("YYYY-MM-DD"), m_time: moment().format("HH:mm:ss") }];
-    setMemoList([...newMemoList]);
-    setMemo({ ...memo, m_date: moment().format("YYYY-MM-DD"), m_time: moment().format("HH:mm:ss"), m_subject: "", m_memo: "", m_image: "" });
+    const newMemoList = [...memoList, { seq: uuid(), memoItem: memoItem }];
+    setMemoList(newMemoList);
   };
 
   return (
     <div className={styles.main}>
       <div className={styles.aside}>
         <MemoMainLeft>
-          <MemoDate memo={memo} setMemo={setMemo} />
+          <MemoDate />
           <MemoList memoList={memoList} />
         </MemoMainLeft>
       </div>
       <div className={styles.aside}>
         <MemoMainRight>
-          <MemoInput memo={memo} setMemo={setMemo} memoInsert={memoInsert} />
+          <MemoInput memoItem={memoItem} setMemoItem={setMemoItem} memoInsert={memoInsert} />
         </MemoMainRight>
       </div>
     </div>
