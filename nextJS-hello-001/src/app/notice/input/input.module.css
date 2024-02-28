@@ -1,0 +1,14 @@
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px auto;
+}
+.inputBox input {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.inputBox input:nth-of-type(3) {
+  padding: 50px;
+}
