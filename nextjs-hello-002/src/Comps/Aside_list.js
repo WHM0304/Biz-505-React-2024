@@ -10,7 +10,7 @@ export default () => {
 
   const routes = [
     { path: "/blog/write", title: "글쓰기" },
-    { path: "/blog", title: "전체글보기" },
+    { path: "/blog/all", title: "전체글보기" },
     { path: "/blog/new", title: "새글 보기" },
     { path: "/blog/like", title: "인기글 보기" },
   ];
