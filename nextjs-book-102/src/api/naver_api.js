@@ -25,6 +25,6 @@ export const getNaverBooks = async (search) => {
   const books = await response.json();
   // naver_api.js 는 server 모듈이다
   // 이 모듈에서 console.log() 를 사용하면 서버 console 에 출력된다.
-  console.log("books", books);
+  // console.log("books", books);
   return books.items;
 };

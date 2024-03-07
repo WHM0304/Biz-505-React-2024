@@ -57,8 +57,8 @@ for (let i = 1; i < 10; i++) {
 
 const multi = () => {
   return {
-    hello() {
-      console.log("안녕하셈");
+    hello(dan) {
+      return console.log(`${dan} ????`);
     },
     how(name) {
       console.log(`${name} 아 어떻게 지내니?`);
@@ -66,5 +66,5 @@ const multi = () => {
   };
 };
 const multiImpl = multi();
-multiImpl.hello();
+multiImpl.hello("?");
 multiImpl.how("길동");

@@ -45,7 +45,7 @@ const BookList = ({ search, setIsbn }) => {
     fetchData();
   }, [search]);
   const viewList = books.map((book) => {
-    console.log(books);
+    // console.log(books);
     return (
       <li key={book.isbn} onClick={() => setIsbn(book.isbn)}>
         {book.title}

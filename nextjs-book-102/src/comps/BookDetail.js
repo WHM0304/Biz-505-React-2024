@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 const BookDetail = ({ isbn }) => {
   const [book, setBook] = useState("");
 
-  console.log(isbn);
+  // console.log(isbn);
   useEffect(() => {
     const fetchBook = async () => {
       const result = await getNaverBooks(isbn);
       const book = result[0];
-      console.log(book);
+      // console.log(book);
       setBook(book);
     };
     fetchBook();
