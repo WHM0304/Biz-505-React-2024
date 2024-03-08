@@ -6,7 +6,7 @@ const FORM_NAME = {
   CONTENT: "content",
 };
 // /blog/write/page.js
-export default () => {
+export default async () => {
   // form 의 input 에 입력한 값들을 함수에 전달해주는 매개변수가 필요
   // formData 에 input 에 입력한 값들이 담겨서 전달된다.
   const actionHandler = async (formData) => {
@@ -16,7 +16,7 @@ export default () => {
       subject: formData.get(FORM_NAME.SUBJECT),
       content: formData.get(FORM_NAME.CONTENT),
     };
-    console.log("FORM", data);
+
     redirect("/blog/all");
   };
   //
