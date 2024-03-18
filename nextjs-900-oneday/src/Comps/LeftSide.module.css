@@ -1,0 +1,12 @@
+.ul span {
+  border: 1px solid #ddd;
+  display: inline-block;
+  background-color: #eee;
+  width: 20%;
+}
+
+.body span {
+  display: inline-block;
+  width: 20%;
+  border: 1px solid #ddd;
+}
