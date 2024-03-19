@@ -2,14 +2,125 @@
   display: flex;
   padding: 2rem;
   /* min-height: 100vh; */
+  /**/
 }
 
 .main section {
   flex: 1;
   margin: 5px;
   padding: 8px;
-  border: 1px solid blue;
+  border: 1px solid rosybrown;
+  border-radius: 10px;
+  /**/
+}
+.list li {
+  text-align: center;
+  list-style: none;
+  padding: 10px;
+
+  margin-top: 4px;
+  border-bottom: 2px solid transparent;
+  color: skyblue;
+}
+
+.list li:hover {
+  cursor: pointer;
+  color: white;
+}
+.list li:hover strong {
+  background-color: crimson;
+}
+
+.main h1 {
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: rgb(211, 114, 49);
+  color: white;
+  user-select: none;
 }
 
 .list {
+  height: calc(100vh - 10vh);
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+.list:hover::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+
+.list:hover::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 10px;
+}
+.list li {
+  display: flex;
+  gap: 5px;
+}
+.list span {
+  width: 10%;
+}
+.list strong {
+  width: 30%;
+}
+
+.list span {
+  text-align: center;
+  list-style: none;
+  padding: 10px;
+  background-color: coral;
+  box-shadow: 2px 2px 2px crimson;
+  margin-top: 4px;
+  width: 50%;
+  color: yellowgreen;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.main section span:nth-of-type(even) {
+  background-color: rgb(242, 104, 54);
+}
+
+.list strong {
+  padding: 10px;
+  background-color: rgb(223, 154, 168);
+  border-radius: 10px;
+}
+
+/*Tablet 세로화면으로 볼때 화면 구성 변경: 반응형*/
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+  .main section:nth-of-type(1) {
+    order: 2;
+  }
+}
+
+.detail {
+  height: calc(100vh - 10vh);
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.detail::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+.detail:hover::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+
+.detail:hover::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 10px;
 }

@@ -1,13 +1,37 @@
+import css from "@/css/score.list.module.css";
+
 const ScoreList = ({ scoreList }) => {
-  const viewList = scoreList.map((item) => (
-    <li key={`${(item.s_score, item.s_stnum)}`}>
-      {`${item.s_stnum}, ${item.s_score}`}
-    </li>
-  ));
+  let scoreTotal = 0;
+  const viewList = scoreList.map((item, index) => {
+    scoreTotal += item.s_score;
+    return (
+      <li key={index} className={css.item}>
+        <strong>{item.s_subject}</strong>
+        <span>{item.s_score}</span>
+      </li>
+    );
+  });
+
   return (
     <>
       <h1>성적리스트</h1>
-      <ul>{viewList}</ul>
+      <ul className={css.body}>
+        {viewList}
+        {scoreTotal != 0 && (
+          <li className={`${css.item} ${css.strong}`}>
+            <strong>총점</strong>
+            <span>{scoreTotal}</span>
+          </li>
+        )}
+        {scoreTotal != 0 && (
+          <li className={`${css.item} ${css.strong}`}>
+            <strong>평균</strong>
+            <span>
+              {Math.round(scoreTotal / scoreList.length, 0)}
+            </span>
+          </li>
+        )}
+      </ul>
     </>
   );
 };
