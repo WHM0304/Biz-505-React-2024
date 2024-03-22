@@ -123,7 +123,7 @@ TABLE 관계설정
 SELECT * 
 	FROM tbl_order_product OP
 		LEFT JOIN tbl_product P
-			ON OP.op_onum = P.p_code
+			ON OP.op_pcode = P.p_code
 WHERE P.p_code IS NULL;
 
 SELECT *
