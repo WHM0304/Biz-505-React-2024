@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.main h1 {
+  background-color: green;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+
+.main input {
+  padding: 10px;
+  margin-top: 10px;
+  display: inline-block;
+}
+.main button {
+  padding: 9px 20px;
+
+  margin-top: 10px;
+  display: inline-block;
+}
+.main form {
+  display: flex;
+  gap: 5px;
+}
+
+.main li {
+  margin-left: 2rem;
+}
+.form {
+  align-items: center;
+  padding: 10px;
+}
+
+.button {
+  width: 30%;
+}
+.button button {
+  width: 100%;
+}
