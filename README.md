@@ -19,7 +19,7 @@
 
 - `React`와 `NextJS` Framework 가 적용된 프로젝트 생성하기
 
-```bash
+```bashmkdir
 npx create-next-app@latest [프로젝트명]
 npm init next-app [프로젝트명]
 yarn create-next-app [프로젝트명]
