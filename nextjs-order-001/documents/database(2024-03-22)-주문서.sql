@@ -293,3 +293,5 @@ ADD FULLTEXT(c_tel);
 ALTER TABLE tbl_customer
 DROP INDEX c_tel;
 DROP INDEX c_tel ON tbl_customer;
+
+SELECT * FROM tbl_product;
