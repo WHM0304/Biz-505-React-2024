@@ -3,13 +3,19 @@ import { findByCustomer } from "@/app/api/customer";
 import css from "@/css/order.insert.module.css";
 import { useCallback, useEffect, useState } from "react";
 import CustomSearch from "./CustomSearch";
-import { findByCcode } from "@/app/api/order";
+import { getOrderListByPcode } from "@/app/api/order";
+import { findByPName } from "@/app/api/product";
+import ProductSearch from "./ProductSearch";
 
 const OrderInsert = () => {
   const [search, setSearch] = useState("");
   const [customList, setCustomList] = useState([]);
   const [customer, setCustomer] = useState("");
   const [orderList, setOrderList] = useState([]);
+
+  const [productList, setProductList] = useState([]);
+  const [product, setProduct] = useState("");
+
   /**
    * useCallback()
    * State 생성 영역(컴포넌트 함수내의 return 명령 이전의 영역)에
@@ -33,16 +39,43 @@ const OrderInsert = () => {
       setCustomList([]);
     }
   });
+  //
+  const productChangeHandler = useCallback(async (e) => {
+    const product = e.target.value;
+    console.log(product);
+    if (product) {
+      const result = await findByPName(product);
+      setProductList([...result]);
+    } else {
+      setProductList([]);
+    }
+  });
 
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (product && product?.p_code) {
+        const result = await findByPName(product);
+        setProductList([...result]);
+      }
+    };
+    fetchProduct();
+  }, [search]);
+
+  //
   useEffect(() => {
     const fetchOrder = async () => {
       if (customer && customer?.c_code) {
-        const result = await findByCcode(customer.c_code);
+        const result = await getOrderListByPcode(customer.c_code);
         setOrderList([...result]);
       }
     };
     fetchOrder();
   }, [customer]);
+  /**
+   * 상품검색 input box 에 상품이름을 입력하면
+   * tbl_product 에서 상품정보를 fetch 하고
+   * 상품검색 input box 아래에 목록을 보여주는 코드 작성
+   */
 
   return (
     <article className={css.main}>
@@ -68,18 +101,42 @@ const OrderInsert = () => {
             </ul>
           )}
         </div>
-        <div>
-          <input placeholder="상품코드" />
+        <div className={css.product}>
+          <input
+            placeholder="상품검색"
+            defaultValue={product}
+            onChange={productChangeHandler}
+          />
+          {productList.length > 0 && (
+            <ProductSearch
+              productList={productList}
+              setProduct={setProduct}
+              setProductList={setProductList}
+            />
+          )}
           <input placeholder="주문수량" />
-          <button>추가</button>
+          <button onClick={""}>추가</button>
         </div>
       </form>
       <div>
+        <h1>주문</h1>
+        {product &&
+          `${product.p_code},${product.p_name},${product.p_item},${product.p_price}`}
         <h3>주문목록</h3>
-        <ul>
+        <ul className={css.product_list}>
           {orderList.map((order) => (
             <li>
-              {order.o_num},{order.o_date}
+              <p>
+                {order.o_num},{order.o_date}
+                <ul className={css.product_ul}>
+                  {order.products.map((item) => (
+                    <li>
+                      {item.op_pcode}, {item.product.p_name},
+                      {item.product.p_item} ,{item.product.p_price}
+                    </li>
+                  ))}
+                </ul>
+              </p>
             </li>
           ))}
         </ul>
