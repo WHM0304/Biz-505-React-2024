@@ -1,17 +1,9 @@
 "use client";
-import { selectAll } from "@/app/api/customer";
 import css from "@/css/insert.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const OrderInsert = () => {
   const [search, setSearch] = useState("");
-  const [customer, setCustomer] = useState([]);
-  // 고객코드 이펙트
-  useEffect(() => {
-    const getCustomer = async (c_code) => {
-      const result = await selectAll(c_code);
-    };
-  });
 
   const changeHandler = (e) => {
     const { text } = e.target.value;
@@ -53,7 +45,7 @@ const OrderInsert = () => {
       </div>
       <form className={css.form}>
         <div>
-          <input placeholder="상품코드" value={search} />
+          <input placeholder="상품코드" />
         </div>
         <div className={css.button}>
           <button>검색</button>
@@ -61,13 +53,24 @@ const OrderInsert = () => {
       </form>
       <form className={css.form}>
         <div>
-          <input placeholder="주문수량" value={search} />
+          <input placeholder="주문수량" />
         </div>
         <div className={css.button}>
           <button>상품추가</button>
         </div>
       </form>
-      <div></div>
+      <div className={css.productList}>
+        <ul>
+          <li>상품코드</li>
+          <li>상품명</li>
+          <li>주문수량</li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
     </div>
   );
 };
