@@ -36,8 +36,10 @@ const OrderInsert = () => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      const result = await findByCcode(customer.c_code);
-      setOrderList([...result]);
+      if (customer && customer?.c_code) {
+        const result = await findByCcode(customer.c_code);
+        setOrderList([...result]);
+      }
     };
     fetchOrder();
   }, [customer]);
