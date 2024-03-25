@@ -35,11 +35,8 @@ box 를 그려버린다.
 하지만 relative box 는 아니다.
 absolute 성질을 사용할때는 반드시 명심해야 한다.
 */
-.product {
-  position: relative;
-}
-.cust_list,
-.pro_list {
+
+.cust_list {
   list-style: none;
   background-color: #ccc;
   position: absolute;
@@ -47,6 +44,13 @@ absolute 성질을 사용할때는 반드시 명심해야 한다.
   left: 0;
   right: 0;
   z-index: 200px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+.pro_list {
+  list-style: none;
+  background-color: #ccc;
+  position: absolute;
   max-height: 100px;
   overflow-y: auto;
 }
