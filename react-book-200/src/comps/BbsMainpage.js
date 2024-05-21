@@ -6,12 +6,7 @@ const BbsMainPage = () => {
   //http://localhost:3000/bbs/free 라고 요청이 오면
   // /bbs/free 라는 path 를 추출하는 함수
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const [user, setUser] = useState({ name: "홍길동" });
 
-  if (!user || user.name !== "이몽룡") {
-    navigate("/user/login");
-  }
   return (
     <div className={css.main}>
       <aside className={css.left_side}>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 /*
 ContextProvider
@@ -7,11 +7,30 @@ React 의 Drilling Props 를 회피하기 위한 Global State 를 관리하는 �
 */
 // Context 생성하기
 const UserContext = createContext();
+const useUserContext = () => {
+  /*
+  react 의 useContext() Hook 함수를 사용자정의(커스텀)하여
+  UserContext 에 저장된 state 를 사용할수 있도록 도와주는 함수
+  함수이름이 반드시 use**() 으로 시작해야 한다.
+  */
+  return useContext(UserContext);
+};
 
 // Provider 생성하기
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const onFetchUser = useCallback(() => {
+    const fetchuser = async () => {
+      const res = await fetch("/api/user");
+      const json = await res.json();
+      setUser(json.username);
+    };
+    fetchuser();
+  }, []);
+  useEffect(onFetchUser, [onFetchUser]);
 
-  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, onFetchUser }}>{children}</UserContext.Provider>
+  );
 };
-export { UserContextProvider };
+export { UserContextProvider, useUserContext };

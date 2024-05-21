@@ -4,6 +4,7 @@ import LoginPage from "../comps/LoginPage";
 import JoinPage from "../comps/JoinPage";
 import BbsMainPage from "../comps/BbsMainpage";
 import BBsWritePage from "../comps/BBsWrite";
+import BookMain from "../comps/BookMainPage";
 
 const MainRouter = () => {
   const router = createBrowserRouter([
@@ -11,6 +12,7 @@ const MainRouter = () => {
       path: "/",
       element: <App />,
       children: [
+        { path: "/book", element: <BookMain /> },
         {
           path: "/bbs",
           element: <BbsMainPage />,
