@@ -14,9 +14,7 @@ export default () => {
         <StudentList setS_code={setS_code} />
         {/* <Ex_student setS_code={setS_code} /> */}
       </div>
-      <div className={styles.right}>
-        {s_code && <StudentDetail s_code={s_code} />}
-      </div>
+      <div className={styles.right}>{s_code && <StudentDetail s_code={s_code} />}</div>
     </section>
   );
 };
